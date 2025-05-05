@@ -1,0 +1,32 @@
+name: Container Job
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-in-container:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.12-slim
+      volumes:
+        - ${{ github.workspace }}:/workspace
+      
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        cd /workspace
+        pip install -r requirements.txt
+    
+    - name: Run script
+      run: |
+        cd /workspace
+        python app.py
+    
+    - name: Upload results
+      uses: actions/upload-artifact@v3
+      with:
+        name: job-results
+        path: jobs.csv
