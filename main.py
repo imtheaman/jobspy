@@ -2,7 +2,7 @@ import csv
 from jobspy import scrape_jobs
 
 jobs = scrape_jobs(
-    site_name=["indeed", "linkedin", "glassdoor", "naukri"],
+    site_name=["indeed", "linkedin", "glassdoor"],
     search_term="senior react native developer",
     google_search_term="senior react native developer jobs in Bangalore",
     location="Bangalore, India",
